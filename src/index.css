@@ -1,8 +1,10 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 @import "tailwindcss";
 :root {
   font-family: Inter, Arial, sans-serif;
   color: #19364b;
-  background: #f4f7fb;
+  background: linear-gradient(to top, #0bb8a9, #05524b);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
