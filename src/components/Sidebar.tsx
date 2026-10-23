@@ -27,12 +27,12 @@ export function Sidebar({
   onSelect: (label: string) => void
 }) {
   return (
-    <aside className="rounded-[30px] border border-[#17c4eb] bg-[#d8dee7] p-4 lg:min-h-[884px] lg:w-[219px] lg:shrink-0">
-      <p className="mb-4 font-['Inter:Semi_Bold'] text-[11px] font-semibold tracking-[0.88px] text-[#596575]">
+    <aside className="h-[76vh] w-[14vw] shrink-0 rounded-[2vw] border border-[#17c4eb] bg-[#d8dee7] p-[1vw]">
+      <p className="mb-[1.2vh] font-['Inter:Semi_Bold'] text-[clamp(6px,0.55vw,9px)] font-semibold tracking-[0.44px] text-[#596575]">
         MENU
       </p>
       <nav
-        className="flex gap-2 overflow-x-auto pb-1 lg:flex-col"
+        className="flex flex-col gap-[0.7vh] overflow-x-auto pb-1"
         aria-label="Menu principal"
       >
         {menuItems.map((item) => {
@@ -42,14 +42,14 @@ export function Sidebar({
               key={item.label}
               type="button"
               onClick={() => onSelect(item.label)}
-              className={`flex h-11 min-w-[156px] items-center gap-3 rounded-2xl border px-4 text-left text-sm transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3569d4] lg:w-full ${
+              className={`flex h-[4.2vh] w-full min-w-0 items-center gap-[0.6vw] rounded-[0.8vw] border px-[0.8vw] text-left text-[clamp(8px,0.7vw,11px)] transition duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3569d4] ${
                 selected
                   ? "border-[1.5px] border-[#10b981] bg-white font-['Inter:Semi_Bold'] font-semibold text-[#065f46] shadow-sm"
                   : "border-[rgba(16,185,129,0.55)] bg-white/45 font-['Inter:Medium'] font-medium text-[#202631] hover:bg-white/75"
               }`}
               aria-current={selected ? "page" : undefined}
             >
-              <DesignIcon file={item.icon} />
+              <DesignIcon file={item.icon} size={12} />
               {item.label}
             </button>
           )
