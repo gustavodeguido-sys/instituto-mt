@@ -7,6 +7,13 @@ export interface Hospedagem {
     dataSaida: string | null;
 }
 
+export interface ProximaHospedagem {
+    id: string;
+    paciente: string;
+    quarto: string;
+    dataPrevista: string;
+}
+
 export interface ResumoDashboard {
   hospedadosAgora: number;
   pacientesHospedados: number;
@@ -16,4 +23,5 @@ export interface ResumoDashboard {
   ocupacaoPercentual: number;
   checkinsHoje: number;
   hospedagens: Hospedagem[];
+  proximasHospedagens: ProximaHospedagem[];
 }
