@@ -7,7 +7,7 @@ const asset = (name: string) => `/assets/${name}.svg`
 // Itens do menu lateral: cada botão leva à rota indicada em `path`.
 const menuItems = [
    { label: 'Resumo', path: '/resumo', icon: 'resumo.svg' },
-    { label: 'Pacientes', path: '/pacientes', icon: 'pacientes.svg' },
+    { label: 'Hóspedes', path: '/hospedes', icon: 'pacientes.svg' },
     { label: 'Financeiro', path: '/financeiro', icon: 'financeiro.svg' },
     { label: 'Reuniões', path: '/reunioes', icon: 'reunioes.svg' },
     { label: 'Relatórios', path: '/relatorios', icon: 'relatorios.svg' },

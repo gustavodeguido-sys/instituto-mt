@@ -1,9 +1,7 @@
 import type { OcupacaoResumo } from "@/types/ocupacao";
 
-export async function buscarResumoOcupacao(): Promise<OcupacaoResumo> {
-    return {
-        pacientes: 2,
-        acompanhantes: 2,
-        vagasLivres: 8,
-    }
+// Ainda não há backend: null deixa a barra de ocupação vazia.
+// Quando a API existir, trocar por um fetch que devolva o OcupacaoResumo.
+export async function buscarResumoOcupacao(): Promise<OcupacaoResumo | null> {
+    return null
 }
