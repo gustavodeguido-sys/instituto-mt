@@ -1,0 +1,17 @@
+.relatorios-page {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.relatorios-page h1,
+.relatorios-page h2,
+.relatorios-page h3,
+.relatorios-page strong {
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.relatorios-page p {
+  font-weight: 400;
+}
