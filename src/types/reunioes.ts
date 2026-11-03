@@ -1,6 +1,6 @@
 export interface Reuniao {
-    id: string;
     titulo: string;
+    formato: 'online' | 'presencial'
     inicio: string;
     horario: string;
     local: string;
@@ -9,7 +9,9 @@ export interface Reuniao {
 
 export interface ReunioesPassadas {
     titulo: string;
-    hoario: string;
+    horario: string;
     local: string;
     participantes: number;
 }
+
+export type NovaReuniao = Omit<Reuniao, 'id'>

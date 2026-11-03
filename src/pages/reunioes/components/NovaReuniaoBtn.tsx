@@ -11,11 +11,12 @@ import { Dialog,
 import { Field, FieldGroup } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { agendarReuniao } from "@/services/ReuniaoService";
 import { useState, type FormEvent } from "react";
 
 interface NovaReuniaoProps {
     className?: string;
-    formato: 'presencial' | 'online';
+    onAgendada?: () => void;
 }
 
 const classeSelect = `h-9 w-full rounded-lg border border-input bg-white px-3 text-sm
@@ -30,7 +31,7 @@ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = new FormData(event.currentTarget);
 
-
+}
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger render={
@@ -38,19 +39,19 @@ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
                 >Nova reunião
                 </Button>
             }
-            />
-            <DialogContent className="sm:max-2-lg">
+            /> 
+            <form onSubmit={handleSubmit}
+                >
+                <DialogContent className="sm:max-w-lg">
             <DialogHeader>
                 <DialogTitle>Agendar nova reunião</DialogTitle>
                 <DialogDescription>Organize o próximo encontro entre os gestores da casa</DialogDescription>
             </DialogHeader>
             </DialogContent>
-
-            <form onSubmit={handleSubmit}>
                 <FieldGroup>
                     <Field>
-                       <Label htmlFor="tituto-reuniao">Titulo da reunião</Label>
-                       <Input id="titulo-reuniao" name="tituloReuniao" type="string" required />
+                       <Label htmlFor="titulo-reuniao">Titulo da reunião</Label>
+                       <Input id="titulo-reuniao" name="tituloReuniao" type="text" required />
                     </Field>
                     <div className="grid grid-cols-2 gap-4 sm:grid-cols-2">
                     <Field>
@@ -68,7 +69,7 @@ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
                             <select 
                               id="opcao-formato"
                               name="opcaoFormato"
-                              defaultValue="Online"
+                              defaultValue="online"
                               className={classeSelect}
                             >
                                 <option value="online">Online</option>
@@ -82,11 +83,11 @@ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
                     Cancelar
                     </DialogClose>
                     <Button type="submit" disabled={agendando}>
-                        {agendando ? "Gerando" : "Gerar relatório"}
+                        {agendando ? "Agendar" : "Agendando"}
+                        onClick={setAgendando}
                     </Button>
                 </DialogFooter>
             </form>
         </Dialog>
     )
-}
 }
