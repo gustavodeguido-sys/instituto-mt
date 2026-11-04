@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ArrowLeft } from 'lucide-react'
-import { Sidebar } from '@/components/Sidebar'
 import { buttonVariants } from '@/components/ui/button'
 import { buscarRelatorios } from '@/services/RelatoriosService'
 import type { ArquivoRelatorio } from '@/types/categorias'
@@ -65,70 +64,60 @@ export default function RelatorioCategoriaPage() {
   const totalArquivos = arquivos.length
 
   return (
-    <main
-      className="relatorios-page flex min-h-screen items-center justify-start gap-[1.5vw]
-        overflow-hidden pl-[9.3vw] pr-[5.2vw]"
-    >
-      <Sidebar />
+    <div className="relatorios-page flex min-h-0 flex-1 flex-col gap-[1.6vh]">
+      {/* Cabeçalho: voltar, título da categoria, seletor de mês e novo relatório */}
+      <header className="flex items-end justify-between gap-4">
+        <div>
+          <Link
+            to={`/relatorios?mes=${mes}`}
+            className={buttonVariants({
+              variant: 'link',
+              size: 'xs',
+              className: '-ml-2 text-[clamp(7px,0.6vw,10px)] text-blue-600',
+            })}
+          >
+            <ArrowLeft />
+            Relatórios
+          </Link>
+          <h1 className="text-[clamp(1.25rem,2vw,2rem)] uppercase text-slate-900">{titulo}</h1>
+          <p className="mt-1 text-[clamp(8px,0.7vw,11px)] text-gray-600">{descricao}</p>
+        </div>
 
-      <div
-        className="flex h-[76vh] w-[70vw] flex-none flex-col gap-[1.6vh] rounded-[2vw]
-          bg-[#D8DEE7] p-[1.5vw] shadow-md"
+        <div className="flex items-center gap-[0.6vw]">
+          <SeletorMes value={mes} onChange={setMes} />
+          <NovoRelatorioBtn
+            categoriaInicial={categoria?.id}
+            className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(8px,0.7vw,11px)]
+              text-white hover:bg-blue-700"
+          />
+        </div>
+      </header>
+
+      {/* Lista de arquivos do mês */}
+      <section
+        className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[1.2vw]
+          bg-white shadow-sm"
+        aria-labelledby="titulo-arquivos"
       >
-        {/* Cabeçalho: voltar, título da categoria, seletor de mês e novo relatório */}
-        <header className="flex items-end justify-between gap-4">
-          <div>
-            <Link
-              to={`/relatorios?mes=${mes}`}
-              className={buttonVariants({
-                variant: 'link',
-                size: 'xs',
-                className: '-ml-2 text-[clamp(7px,0.6vw,10px)] text-blue-600',
-              })}
-            >
-              <ArrowLeft />
-              Relatórios
-            </Link>
-            <h1 className="text-[clamp(1.25rem,2vw,2rem)] uppercase text-slate-900">{titulo}</h1>
-            <p className="mt-1 text-[clamp(8px,0.7vw,11px)] text-gray-600">{descricao}</p>
-          </div>
+        <div className="px-[1vw] pt-[1.4vh] pb-[1vh]">
+          <h2 id="titulo-arquivos" className="text-[clamp(10px,0.85vw,14px)] text-slate-900">
+            Arquivos de {nomeDoMes(mes).toLowerCase()}
+          </h2>
+          <p className="text-[clamp(7px,0.6vw,10px)] text-slate-500">
+            {totalArquivos} {totalArquivos === 1 ? 'relatório' : 'relatórios'} no período
+          </p>
+        </div>
 
-          <div className="flex items-center gap-[0.6vw]">
-            <SeletorMes value={mes} onChange={setMes} />
-            <NovoRelatorioBtn
-              categoriaInicial={categoria?.id}
-              className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(8px,0.7vw,11px)]
-                text-white hover:bg-blue-700"
-            />
-          </div>
-        </header>
-
-        {/* Lista de arquivos do mês */}
-        <section
-          className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-[1.2vw]
-            bg-white shadow-sm"
-          aria-labelledby="titulo-arquivos"
-        >
-          <div className="px-[1vw] pt-[1.4vh] pb-[1vh]">
-            <h2 id="titulo-arquivos" className="text-[clamp(10px,0.85vw,14px)] text-slate-900">
-              Arquivos de {nomeDoMes(mes).toLowerCase()}
-            </h2>
-            <p className="text-[clamp(7px,0.6vw,10px)] text-slate-500">
-              {totalArquivos} {totalArquivos === 1 ? 'relatório' : 'relatórios'} no período
-            </p>
-          </div>
-
-          <div className="min-h-0 flex-1 overflow-y-auto">
-            <TabelaArquivos
-              arquivos={arquivos}
-              carregando={carregando}
-              erro={erro}
-              mostrarCategoria={todas}
-              mensagemVazia="Não há relatórios neste mês. Gere um em “Novo relatório”."
-            />
-          </div>
-        </section>
-      </div>
-    </main>
+        <div className="min-h-0 flex-1 overflow-y-auto">
+          <TabelaArquivos
+            arquivos={arquivos}
+            carregando={carregando}
+            erro={erro}
+            mostrarCategoria={todas}
+            mensagemVazia="Não há relatórios neste mês. Gere um em “Novo relatório”."
+          />
+        </div>
+      </section>
+    </div>
   )
 }
