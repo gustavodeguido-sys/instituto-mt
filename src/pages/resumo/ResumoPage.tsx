@@ -10,6 +10,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 import AddCheckIn from '@/components/AddCheckIn'
+import { EstadoVazio } from '@/components/EstadoVazio'
 import { ProgressLabel, ProgressTrack, ProgressValue } from '@/components/ui/progress'
 import {
   Table,
@@ -298,30 +299,6 @@ export default function ResumoPage() {
           </ul>
         </section>
       </div>
-    </div>
-  )
-}
-
-// Mensagem padrão para listas sem dados.
-function EstadoVazio({
-  icone: Icone,
-  titulo,
-  descricao,
-}: {
-  icone: LucideIcon
-  titulo: string
-  descricao: string
-}) {
-  return (
-    <div className="flex flex-col items-center gap-2 text-center">
-      <span
-        className="flex size-10 items-center justify-center rounded-full
-          bg-emerald-50 text-emerald-600"
-      >
-        <Icone className="size-5" aria-hidden="true" />
-      </span>
-      <p className="font-semibold text-slate-800">{titulo}</p>
-      <p className="text-slate-500">{descricao}</p>
     </div>
   )
 }

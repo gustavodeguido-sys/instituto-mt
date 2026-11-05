@@ -6,6 +6,7 @@ import RelatoriosPage from './pages/relatorios/RelatoriosPage'
 import RelatorioCategoriaPage from './pages/relatorios/RelatorioCategoriaPage'
 import AppLayout from './layouts/AppLayout'
 import ReunioesPage from './pages/reunioes/ReunioesPage'
+import FinanceiroPage from './pages/financeiro/FinanceiroPage'
 
 export default function App() {
   return (
@@ -17,6 +18,7 @@ export default function App() {
       <Route path="/relatorios" element={<RelatoriosPage />} />
       <Route path="/relatorios/:categoria" element={<RelatorioCategoriaPage />} />
       <Route path="/reunioes" element={<ReunioesPage />} />
+      <Route path="/financeiro" element={<FinanceiroPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
       

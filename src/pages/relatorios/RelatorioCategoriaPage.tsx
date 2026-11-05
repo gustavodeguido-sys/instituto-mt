@@ -6,9 +6,9 @@ import { buscarRelatorios } from '@/services/RelatoriosService'
 import type { ArquivoRelatorio } from '@/types/categorias'
 import { encontrarCategoria } from './categorias'
 import NovoRelatorioBtn from './components/NovoRelatorioBtn'
-import { SeletorMes } from './components/SeletorMes'
+import { SeletorMes } from '@/components/SeletorMes'
 import { TabelaArquivos } from './components/TabelaArquivos'
-import { useMesSelecionado } from './useMesSelecionado'
+import { useMesSelecionado } from '@/components/useMesSelecionado'
 import { nomeDoMes } from './utils'
 import './RelatoriosPage.css'
 
@@ -84,7 +84,7 @@ export default function RelatorioCategoriaPage() {
         </div>
 
         <div className="flex items-center gap-[0.6vw]">
-          <SeletorMes value={mes} onChange={setMes} />
+          <SeletorMes value={mes} onChange={setMes} rotulo="Mês dos relatórios" />
           <NovoRelatorioBtn
             categoriaInicial={categoria?.id}
             className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(8px,0.7vw,11px)]

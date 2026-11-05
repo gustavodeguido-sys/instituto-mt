@@ -1,10 +1,10 @@
 import { useSearchParams } from 'react-router-dom'
-import { mesAtual } from './utils'
+import { mesAtual } from '@/lib/mes'
 
 const FORMATO_MES = /^\d{4}-\d{2}$/
 
 /**
- * Hook do mês selecionado nas telas de relatórios.
+ * Hook do mês selecionado (telas de relatórios e financeiro).
  *
  * O mês fica na URL (?mes=2026-10) em vez de num useState: assim ele
  * continua o mesmo ao entrar numa categoria, ao voltar para o hub

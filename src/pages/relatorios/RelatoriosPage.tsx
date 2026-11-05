@@ -7,9 +7,9 @@ import type { ArquivoRelatorio, CategoriaId, CategoriaRelatorio } from '@/types/
 import { CATEGORIAS } from './categorias'
 import { CategoriaCard } from './components/CategoriaCard'
 import NovoRelatorioBtn from './components/NovoRelatorioBtn'
-import { SeletorMes } from './components/SeletorMes'
+import { SeletorMes } from '@/components/SeletorMes'
 import { TabelaArquivos } from './components/TabelaArquivos'
-import { useMesSelecionado } from './useMesSelecionado'
+import { useMesSelecionado } from '@/components/useMesSelecionado'
 import './RelatoriosPage.css'
 
 export default function RelatoriosPage() {
