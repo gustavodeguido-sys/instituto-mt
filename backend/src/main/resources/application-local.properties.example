@@ -1,0 +1,8 @@
+# MODELO — copie para application-local.properties (mesma pasta) e preencha.
+# O application-local.properties está no .gitignore: a senha nunca vai para o git.
+
+# Porta 5433: é a porta configurada no PostgreSQL 18 desta máquina
+# (ver "port" em C:\Program Files\PostgreSQL\18\data\postgresql.conf).
+spring.datasource.url=jdbc:postgresql://localhost:5433/sistema_imt
+spring.datasource.username=mais_transplantes
+spring.datasource.password=TROCAR_PELA_SENHA

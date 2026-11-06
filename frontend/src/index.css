@@ -1,0 +1,55 @@
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "tailwindcss";
+
+/* Fontes servidas localmente pelo pacote (sem depender de CDN). As versões
+   "Variable" trazem todos os pesos num único arquivo .woff2. */
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/plus-jakarta-sans";
+
+/* Tipografia do projeto:
+   - Inter (font-sans) → texto corrido, tabelas, formulários, botões.
+   - Plus Jakarta Sans (font-heading) → títulos, títulos de modal e números de destaque.
+   Pesos: Medium (500) como padrão e Bold (700) só onde precisa destacar. */
+@theme {
+  --font-sans: "Inter Variable", Inter, system-ui, sans-serif;
+  --font-heading: "Plus Jakarta Sans Variable", "Inter Variable", system-ui, sans-serif;
+}
+
+:root {
+  color: #19364b;
+  background: linear-gradient(to top, #0bb8a9, #05524b);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  /* Medium como peso padrão de todo o app (páginas e modais herdam daqui) */
+  font-weight: 500;
+}
+
+button {
+  font: inherit;
+}
+
+/* @layer base: fica abaixo das classes utilitárias, então um `font-sans` ou
+   `font-bold` colocado no componente ainda vence esta regra. */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  [data-slot="dialog-title"],
+  [data-slot="card-title"] {
+    font-family: var(--font-heading);
+  }
+}

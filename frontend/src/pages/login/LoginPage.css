@@ -1,0 +1,13 @@
+/* As fontes (Inter e Plus Jakarta Sans) e o Tailwind vêm de index.css.
+   Importar 'tailwindcss' de novo aqui duplicava o tema e sobrescrevia a fonte global. */
+@layer base {
+  html,
+  body,
+  #root {
+    min-height: 100%;
+  }
+
+  body {
+    min-width: 320px;
+  }
+}
