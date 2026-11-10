@@ -51,6 +51,54 @@ public class Reuniao {
                 this.formato = formato;
                 this.local = local;          
             }
+    
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public FormatoReuniao getFormato() {
+        return formato;
+    }
+
+    public void setFormato(FormatoReuniao formato) {
+        this.formato = formato;
+    }
+
+    public String getLocal() {
+        return local;
+    }
+
+    public void setLocal(String local) {
+        this.local = local;
+    }
+
+    public String getAta() {
+        return ata;
+    }
+
+    public void setAta(String ata) {
+        this.ata = ata;
+    }
+
+    public Set<Participante> getParticipantes() {
+        return participantes;
+    }
+
+    public void setParticipantes(Set<Participante> participantes) {
+        this.participantes = participantes;
+    }
+
+    public List<String> getPauta() {
+        return pauta;
+    }
+
+    public void setPauta(List<String> pauta) {
+        this.pauta = pauta;
+    }
 
     public String getTitulo() {
         return titulo;

@@ -11,6 +11,14 @@ public class Participante {
     private UUID id;
     @Column(nullable = false) private String nome;
     protected Participante() {}
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
     
     public void setNome(String nome){
         this.nome = nome;
