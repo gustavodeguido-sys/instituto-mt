@@ -1,6 +1,5 @@
 package br.org.maistransplantes.reunioes;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import java.util.UUID;
 

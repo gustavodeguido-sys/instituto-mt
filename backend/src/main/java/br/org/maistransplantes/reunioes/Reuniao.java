@@ -42,8 +42,7 @@ public class Reuniao {
     private List<String> pauta = new ArrayList<>();
 
     protected Reuniao() {}
-        public Reuniao(String titulo, LocalDate data, LocalTime horaInicio, LocalTime horaFim
-            , FormatoReuniao formato, String local) {
+        public Reuniao(String titulo, LocalDate data, LocalTime horaInicio, LocalTime horaFim, FormatoReuniao formato, String local) {
                 this.titulo = titulo;
                 this.data = data;
                 this.horaInicio = horaInicio;
@@ -54,10 +53,6 @@ public class Reuniao {
     
     public UUID getId() {
         return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     public FormatoReuniao getFormato() {

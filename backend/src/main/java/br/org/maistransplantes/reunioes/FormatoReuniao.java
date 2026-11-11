@@ -17,6 +17,6 @@ public enum FormatoReuniao {
 
     @JsonCreator public static FormatoReuniao de(String v) {
         for (var f : values()) if (f.valor.equals(v)) return f;
-        throw new IllegalArgumentException("Formato inválido" + v);
+        throw new IllegalArgumentException("Formato inválido: " +  v);
     }
 }

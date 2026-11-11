@@ -2,6 +2,9 @@ package br.org.maistransplantes.reunioes.dto;
 
 import java.util.UUID;
 
-public record ParticipanteDto(UUID id, String nome) {
+import jakarta.validation.constraints.NotNull;
+
+
+public record ParticipanteDto(@NotNull UUID id, String nome) {
     
 }

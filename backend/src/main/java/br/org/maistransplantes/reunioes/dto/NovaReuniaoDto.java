@@ -7,6 +7,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.org.maistransplantes.reunioes.FormatoReuniao;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -17,7 +18,8 @@ public record NovaReuniaoDto(
     @NotNull @JsonFormat (pattern = "HH:mm") LocalTime horaFim,
     @NotNull FormatoReuniao formato,
     @NotBlank String local,
-    @NotNull List<ParticipanteDto> participantes,
+    // @Valid no elemento: faz o @NotNull do id de cada ParticipanteDto ser conferido
+    @NotNull List<@Valid ParticipanteDto> participantes,
     @NotNull List<@NotBlank String> pauta) {} 
     
 
