@@ -181,14 +181,14 @@ export default function HospedesPage() {
       {/* Cabeçalho: título, busca e botão de cadastro */}
       <header className="flex items-end justify-between gap-4">
         <div>
-          <h1 className="text-[clamp(1.25rem,2vw,2rem)] uppercase text-slate-900">Hóspedes</h1>
-          <p className="mt-1 text-[clamp(8px,0.7vw,11px)] text-gray-600">
+          <h1 className="text-[clamp(1.5rem,2.2vw,2.5rem)] uppercase text-slate-900">Hóspedes</h1>
+          <p className="mt-1 text-[clamp(12px,0.95vw,15px)] text-gray-600">
             Pacientes e acompanhantes hospedados na casa
           </p>
         </div>
 
         <div className="flex items-center gap-[0.6vw]">
-          <div className="relative w-[11vw] min-w-40">
+          <div className="relative w-[18vw] min-w-56">
             <Search
               className="pointer-events-none absolute top-1/2 left-2.5 size-3.5
                 -translate-y-1/2 text-slate-400"
@@ -199,11 +199,11 @@ export default function HospedesPage() {
               onChange={handleBusca}
               placeholder="Buscar por nome ou quarto"
               aria-label="Buscar hóspede por nome ou quarto"
-              className="h-[4vh] min-h-8 pl-8 text-[clamp(8px,0.7vw,11px)]"
+              className="h-[4vh] min-h-8 pl-8 text-[clamp(12px,0.95vw,15px)]"
             />
           </div>
           <NovoHospedeBtn
-            className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(8px,0.7vw,11px)]
+            className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(12px,0.95vw,15px)]
               text-white hover:bg-blue-700"
           />
         </div>
@@ -214,21 +214,21 @@ export default function HospedesPage() {
         {cards.map(({ titulo, valor, descricao, icone: Icone }) => (
           <article
             key={titulo}
-            className="flex flex-col rounded-[1.2vw] bg-white p-[1vw] shadow-sm"
+            className="flex flex-col rounded-[1.2vw] bg-white p-[1.4vw] shadow-sm"
           >
             <div className="flex items-start justify-between">
-              <h3 className="text-[clamp(8px,0.7vw,11px)] font-medium text-slate-600">
+              <h3 className="text-[clamp(12px,0.95vw,15px)] font-medium text-slate-600">
                 {titulo}
               </h3>
               <span
-                className="flex size-7 items-center justify-center rounded-lg
+                className="flex size-9 items-center justify-center rounded-lg
                   bg-emerald-50 text-emerald-600"
               >
-                <Icone className="size-3.5" aria-hidden="true" />
+                <Icone className="size-[18px]" aria-hidden="true" />
               </span>
             </div>
             <strong className="strong-text">{valor ?? '—'}</strong>
-            <p className="mt-[0.8vh] text-[clamp(7px,0.6vw,10px)] text-slate-500">
+            <p className="mt-[0.8vh] text-[clamp(10px,0.82vw,13px)] text-slate-500">
               {descricao}
             </p>
           </article>
@@ -241,15 +241,15 @@ export default function HospedesPage() {
           bg-white shadow-sm"
         aria-labelledby="titulo-lista-hospedes"
       >
-        <div className="flex items-center justify-between gap-4 px-[1vw] pt-[1.4vh] pb-[1vh]">
+        <div className="flex items-center justify-between gap-4 px-[1.4vw] pt-[1.4vh] pb-[1vh]">
           <div>
             <h2
               id="titulo-lista-hospedes"
-              className="text-[clamp(10px,0.85vw,14px)] text-slate-900"
+              className="text-[clamp(14px,1.15vw,20px)] text-slate-900"
             >
               Lista de hóspedes
             </h2>
-            <p className="text-[clamp(7px,0.6vw,10px)] text-slate-500">
+            <p className="text-[clamp(10px,0.82vw,13px)] text-slate-500">
               {atualizadoEm ? formatarAtualizacao(atualizadoEm) : 'Carregando...'}
             </p>
           </div>
@@ -269,7 +269,7 @@ export default function HospedesPage() {
                   size="xs"
                   onClick={() => handleFiltro(valor)}
                   aria-pressed={ativo}
-                  className={`rounded-full px-3 text-[clamp(7px,0.6vw,10px)] ${
+                  className={`rounded-full px-3 text-[clamp(10px,0.82vw,13px)] ${
                     ativo
                       ? `border-emerald-500 bg-emerald-50 font-bold
                         text-emerald-700 hover:bg-emerald-50`
@@ -284,17 +284,17 @@ export default function HospedesPage() {
         </div>
 
         <div className="min-h-0 flex-1 overflow-y-auto">
-          <Table className="text-[clamp(8px,0.65vw,11px)]">
+          <Table className="text-[clamp(11px,0.9vw,14px)]">
             <TableHeader className="sticky top-0 z-10 bg-slate-50">
               <TableRow className="hover:bg-transparent">
-                <TableHead className="pl-[1vw] text-[0.9em] uppercase text-slate-500">
+                <TableHead className="pl-[1.4vw] text-[0.9em] uppercase text-slate-500">
                   Paciente
                 </TableHead>
                 <TableHead className="text-[0.9em] uppercase text-slate-500">Acompanhante</TableHead>
                 <TableHead className="text-[0.9em] uppercase text-slate-500">Quarto</TableHead>
                 <TableHead className="text-[0.9em] uppercase text-slate-500">Entrada</TableHead>
                 <TableHead className="text-[0.9em] uppercase text-slate-500">Situação</TableHead>
-                <TableHead className="pr-[1vw] text-right text-[0.9em] uppercase text-slate-500">
+                <TableHead className="pr-[1.4vw] text-right text-[0.9em] uppercase text-slate-500">
                   Ações
                 </TableHead>
               </TableRow>
@@ -314,7 +314,7 @@ export default function HospedesPage() {
               ) : (
                 hospedesDaPagina.map((hospede) => (
                   <TableRow key={hospede.id}>
-                    <TableCell className="pl-[1vw]">
+                    <TableCell className="pl-[1.4vw]">
                       <p className="font-bold text-slate-800">{hospede.paciente}</p>
                       <p className="text-slate-500">{hospede.tipoTransplante}</p>
                     </TableCell>
@@ -332,7 +332,7 @@ export default function HospedesPage() {
                         {situacoes[hospede.situacao].label}
                       </span>
                     </TableCell>
-                    <TableCell className="pr-[1vw]">
+                    <TableCell className="pr-[1.4vw]">
                       {/* TODO: ligar editar/excluir quando houver backend */}
                       <div className="flex justify-end gap-1.5">
                         <Button
@@ -362,8 +362,8 @@ export default function HospedesPage() {
 
         {/* Rodapé: contagem e paginação */}
         <footer
-          className="flex items-center justify-between border-t px-[1vw] py-[0.8vh]
-            text-[clamp(7px,0.6vw,10px)] text-slate-500"
+          className="flex items-center justify-between border-t px-[1.4vw] py-[0.8vh]
+            text-[clamp(10px,0.82vw,13px)] text-slate-500"
         >
           <span>
             Mostrando {hospedesDaPagina.length} de {hospedesFiltrados.length} pacientes

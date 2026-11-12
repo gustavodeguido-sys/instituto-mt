@@ -1,16 +1,24 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import {
+  CalendarDays,
+  FileChartColumn,
+  LayoutGrid,
+  Users,
+  Wallet,
+  type LucideIcon,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
-const asset = (name: string) => `/assets/${name}.svg`
-
 // Itens do menu lateral: cada botão leva à rota indicada em `path`.
-const menuItems = [
-   { label: 'Resumo', path: '/resumo', icon: 'resumo.svg' },
-    { label: 'Hóspedes', path: '/hospedes', icon: 'pacientes.svg' },
-    { label: 'Financeiro', path: '/financeiro', icon: 'financeiro.svg' },
-    { label: 'Reuniões', path: '/reunioes', icon: 'reunioes.svg' },
-    { label: 'Relatórios', path: '/relatorios', icon: 'relatorios.svg' },
+// Ícones do lucide (mesma família usada no Figma): escalam com o texto e herdam a
+// cor via `currentColor`, sem depender de arquivos .svg em /public.
+const menuItems: { label: string; path: string; icon: LucideIcon }[] = [
+  { label: 'Resumo', path: '/resumo', icon: LayoutGrid },
+  { label: 'Hóspedes', path: '/hospedes', icon: Users },
+  { label: 'Financeiro', path: '/financeiro', icon: Wallet },
+  { label: 'Reuniões', path: '/reunioes', icon: CalendarDays },
+  { label: 'Relatórios', path: '/relatorios', icon: FileChartColumn },
 ]
 
 // Descobre qual item do menu corresponde à URL atual
@@ -21,20 +29,8 @@ function itemFromPath(pathname: string) {
   )
 }
 
-function DesignIcon({ file, size = 20 }: { file: string; size?: number }) {
-  return (
-    <span
-      className="flex shrink-0 items-center justify-center"
-      style={{ width: size, height: size }}
-      aria-hidden="true"
-    >
-      <img src={asset(file)} alt="" />
-    </span>
-  )
-}
-
 /**
- * Menu lateral de navegação.
+ * Menu lateral de navegação, ocupando a altura toda da janela.
  *
  * O item ativo é derivado da URL atual, então o destaque acompanha a página
  * mesmo após recarregar ou usar o botão "voltar" do navegador.
@@ -60,33 +56,46 @@ export function Sidebar({
   }
 
   return (
-    <aside className="h-[76vh] w-[14vw] shrink-0 rounded-[2vw] border border-[#17c4eb] bg-[#d8dee7] p-[1vw]">
-      <p className="mb-[0.8vh] text-[clamp(6px,0.55vw,9px)] font-bold tracking-[0.44px] text-[#596575]">
+    // Cantos arredondados só do lado direito: é o único lado com espaço livre
+    // (os outros encostam nas bordas da janela).
+    <aside
+      className="flex h-full w-[17.2vw] min-w-[180px] shrink-0 flex-col rounded-r-[2vw]
+        border-r border-[#17c4eb] bg-white px-[1.7vw] py-[3.9vh]
+        shadow-[2px_0_16px_rgba(5,82,75,0.08)]"
+    >
+      <p className="mb-[0.8vh] text-[clamp(9px,0.76vw,12px)] font-bold tracking-[0.44px] text-[#596575]">
         MENU
       </p>
       <Separator className="mb-[1.2vh] bg-[#17c4eb]/40" />
       <nav
-        className="flex flex-col gap-[0.7vh] overflow-x-auto pb-1"
+        className="flex flex-col gap-[1vh] overflow-y-auto pb-1"
         aria-label="Menu principal"
       >
         {menuItems.map((item) => {
           const selected = activeLabel === item.label
+          const Icone = item.icon
           return (
             <Button
               key={item.label}
               type="button"
               variant="ghost"
               onClick={() => handleSelect(item)}
-              className={`flex h-[4.2vh] w-full min-w-0 justify-start gap-[0.6vw] rounded-[0.8vw] border px-[0.8vw]
-                text-left text-[clamp(8px,0.7vw,11px)] transition duration-200
+              className={`flex h-[4.7vh] min-h-10 w-full min-w-0 justify-start gap-[1vw] rounded-[1.1vw] border px-[1.1vw]
+                text-left text-[clamp(12px,1.05vw,16px)] transition duration-200
                 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#3569d4] ${
                 selected
                   ? "border-[1.5px] border-[#10b981] bg-white font-bold text-[#065f46] shadow-sm hover:bg-white hover:text-[#065f46]"
-                  : "border-[rgba(16,185,129,0.55)] bg-white/45 font-medium text-[#202631] hover:bg-white/75 hover:text-[#202631]"
+                  : "border-[rgba(16,185,129,0.55)] bg-white font-medium text-[#202631] hover:bg-emerald-50/60 hover:text-[#202631]"
               }`}
               aria-current={selected ? "page" : undefined}
             >
-              <DesignIcon file={item.icon} size={12} />
+              {/* Ícone ~22px em 1440px de largura: proporcional ao rótulo de ~15px.
+                  Ter uma classe size-* desliga o size-4 padrão que o Button dá aos svgs. */}
+              <Icone
+                className="size-[clamp(16px,1.53vw,24px)] shrink-0 text-teal-700"
+                strokeWidth={1.8}
+                aria-hidden="true"
+              />
               {item.label}
             </Button>
           )

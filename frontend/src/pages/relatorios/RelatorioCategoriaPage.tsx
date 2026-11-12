@@ -73,21 +73,21 @@ export default function RelatorioCategoriaPage() {
             className={buttonVariants({
               variant: 'link',
               size: 'xs',
-              className: '-ml-2 text-[clamp(7px,0.6vw,10px)] text-blue-600',
+              className: '-ml-2 text-[clamp(10px,0.82vw,13px)] text-blue-600',
             })}
           >
             <ArrowLeft />
             Relatórios
           </Link>
-          <h1 className="text-[clamp(1.25rem,2vw,2rem)] uppercase text-slate-900">{titulo}</h1>
-          <p className="mt-1 text-[clamp(8px,0.7vw,11px)] text-gray-600">{descricao}</p>
+          <h1 className="text-[clamp(1.5rem,2.2vw,2.5rem)] uppercase text-slate-900">{titulo}</h1>
+          <p className="mt-1 text-[clamp(12px,0.95vw,15px)] text-gray-600">{descricao}</p>
         </div>
 
         <div className="flex items-center gap-[0.6vw]">
           <SeletorMes value={mes} onChange={setMes} rotulo="Mês dos relatórios" />
           <NovoRelatorioBtn
             categoriaInicial={categoria?.id}
-            className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(8px,0.7vw,11px)]
+            className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(12px,0.95vw,15px)]
               text-white hover:bg-blue-700"
           />
         </div>
@@ -99,11 +99,11 @@ export default function RelatorioCategoriaPage() {
           bg-white shadow-sm"
         aria-labelledby="titulo-arquivos"
       >
-        <div className="px-[1vw] pt-[1.4vh] pb-[1vh]">
-          <h2 id="titulo-arquivos" className="text-[clamp(10px,0.85vw,14px)] text-slate-900">
+        <div className="px-[1.4vw] pt-[1.4vh] pb-[1vh]">
+          <h2 id="titulo-arquivos" className="text-[clamp(14px,1.15vw,20px)] text-slate-900">
             Arquivos de {nomeDoMes(mes).toLowerCase()}
           </h2>
-          <p className="text-[clamp(7px,0.6vw,10px)] text-slate-500">
+          <p className="text-[clamp(10px,0.82vw,13px)] text-slate-500">
             {totalArquivos} {totalArquivos === 1 ? 'relatório' : 'relatórios'} no período
           </p>
         </div>

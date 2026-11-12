@@ -76,19 +76,19 @@ export function GraficoArrecadacoes({
 
   return (
     <section
-      className={`flex flex-col rounded-[1.2vw] bg-white p-[1vw] shadow-sm ${className}`}
+      className={`flex flex-col rounded-[1.2vw] bg-white p-[1.4vw] shadow-sm ${className}`}
       aria-labelledby="titulo-grafico-financeiro"
     >
       <div className="flex items-center justify-between gap-2">
         <h2
           id="titulo-grafico-financeiro"
-          className="text-[clamp(10px,0.85vw,14px)] text-slate-900"
+          className="text-[clamp(14px,1.15vw,20px)] text-slate-900"
         >
           Arrecadações x despesas
         </h2>
 
         {/* Legenda própria no cabeçalho, como no layout */}
-        <ul className="flex items-center gap-[0.8vw] text-[clamp(7px,0.6vw,10px)] text-slate-600">
+        <ul className="flex items-center gap-[0.8vw] text-[clamp(10px,0.82vw,13px)] text-slate-600">
           {(Object.keys(config) as Serie[]).map((serie) => (
             <li key={serie} className="flex items-center gap-1.5">
               <span
@@ -102,7 +102,7 @@ export function GraficoArrecadacoes({
       </div>
 
       {historico.length === 0 ? (
-        <div className="flex h-[22vh] items-center justify-center text-[clamp(8px,0.65vw,11px)]">
+        <div className="flex h-[22vh] items-center justify-center text-[clamp(11px,0.9vw,14px)]">
           <EstadoVazio
             icone={BarChart3}
             titulo="Sem histórico para exibir"
@@ -158,7 +158,7 @@ export function GraficoArrecadacoes({
       )}
 
       {primeiro && ultimo && (
-        <p className="mt-[0.8vh] text-[clamp(7px,0.55vw,9px)] text-slate-500">
+        <p className="mt-[0.8vh] text-[clamp(10px,0.76vw,12px)] text-slate-500">
           Valores mensais em reais · {nomeDoMesSemAno(primeiro)} a{' '}
           {nomeDoMes(ultimo).toLowerCase()}
         </p>

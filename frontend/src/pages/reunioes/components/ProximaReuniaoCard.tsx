@@ -29,39 +29,39 @@ export function ProximaReuniaoCard({ reuniao, onVerDetalhes, onEditar }: Proxima
           bg-gradient-to-b from-emerald-500 to-emerald-800 px-[1.2vw] py-[1.5vh]
           uppercase text-white"
       >
-        <span className="text-[clamp(7px,0.6vw,10px)]">{semana}</span>
-        <span className="text-[clamp(20px,2vw,32px)] font-bold leading-tight">{dia}</span>
-        <span className="text-[clamp(7px,0.6vw,10px)]">{mes}</span>
+        <span className="text-[clamp(10px,0.82vw,13px)]">{semana}</span>
+        <span className="text-[clamp(26px,2.5vw,40px)] font-bold leading-tight">{dia}</span>
+        <span className="text-[clamp(10px,0.82vw,13px)]">{mes}</span>
       </div>
 
       {/* Coluna 2 — informações */}
       <div className="min-w-0">
-        <p className="text-[clamp(7px,0.6vw,10px)] font-bold uppercase tracking-wide text-emerald-600">
+        <p className="text-[clamp(10px,0.82vw,13px)] font-bold uppercase tracking-wide text-emerald-600">
           Próxima reunião · {contagemRegressiva(reuniao.data)}
         </p>
-        <h2 className="mt-1 text-[clamp(12px,1.1vw,18px)] font-bold text-slate-900">
+        <h2 className="mt-1 text-[clamp(16px,1.4vw,22px)] font-bold text-slate-900">
           {reuniao.titulo}
         </h2>
 
-        <ul className="mt-1 flex flex-wrap gap-x-4 text-[clamp(8px,0.65vw,11px)] text-slate-600">
+        <ul className="mt-1 flex flex-wrap gap-x-4 text-[clamp(11px,0.9vw,14px)] text-slate-600">
           <li className="flex items-center gap-1">
-            <Clock className="size-3.5" aria-hidden="true" />
+            <Clock className="size-4" aria-hidden="true" />
             {reuniao.horaInicio} – {reuniao.horaFim}
           </li>
           <li className="flex items-center gap-1">
-            <MapPin className="size-3.5" aria-hidden="true" />
+            <MapPin className="size-4" aria-hidden="true" />
             {reuniao.local}
           </li>
           <li className="flex items-center gap-1">
-            <Users className="size-3.5" aria-hidden="true" />
+            <Users className="size-4" aria-hidden="true" />
             {reuniao.participantes.length} participantes
           </li>
         </ul>
 
-        <h3 className="mt-[1.2vh] text-[clamp(7px,0.55vw,9px)] font-bold uppercase text-slate-500">
+        <h3 className="mt-[1.2vh] text-[clamp(10px,0.76vw,12px)] font-bold uppercase text-slate-500">
           Pauta
         </h3>
-        <ul className="mt-1 list-disc space-y-0.5 pl-4 text-[clamp(8px,0.65vw,11px)]
+        <ul className="mt-1 list-disc space-y-0.5 pl-4 text-[clamp(11px,0.9vw,14px)]
           text-slate-700 marker:text-emerald-500">
           {reuniao.pauta.map((item) => (
             <li key={item}>{item}</li>
@@ -71,7 +71,7 @@ export function ProximaReuniaoCard({ reuniao, onVerDetalhes, onEditar }: Proxima
 
       {/* Coluna 3 — participantes e ações */}
       <div className="flex w-[11vw] min-w-36 flex-col">
-        <p className="text-[clamp(7px,0.55vw,9px)] font-bold uppercase text-slate-500">
+        <p className="text-[clamp(10px,0.76vw,12px)] font-bold uppercase text-slate-500">
           Participantes
         </p>
         <div className="mt-1 flex -space-x-1.5">
@@ -79,16 +79,16 @@ export function ProximaReuniaoCard({ reuniao, onVerDetalhes, onEditar }: Proxima
             <span
               key={p.id}
               title={p.nome}
-              className={`flex size-7 items-center justify-center rounded-full border-2
-                border-white text-[10px] font-bold text-white
+              className={`flex size-8 items-center justify-center rounded-full border-2
+                border-white text-[11px] font-bold text-white
                 ${CORES_AVATAR[i % CORES_AVATAR.length]}`}
             >
               {iniciais(p.nome)}
             </span>
           ))}
           {restantes > 0 && (
-            <span className="flex size-7 items-center justify-center rounded-full border-2
-              border-white bg-slate-500 text-[10px] font-bold text-white">
+            <span className="flex size-8 items-center justify-center rounded-full border-2
+              border-white bg-slate-500 text-[11px] font-bold text-white">
               +{restantes}
             </span>
           )}

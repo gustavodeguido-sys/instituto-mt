@@ -79,10 +79,10 @@ export default function RelatoriosPage() {
       {/* Cabeçalho: título, seletor de mês e botão de novo relatório */}
       <header className="flex items-end justify-between gap-4">
         <div>
-          <h1 className="text-[clamp(1.25rem,2vw,2rem)] uppercase text-slate-900">
+          <h1 className="text-[clamp(1.5rem,2.2vw,2.5rem)] uppercase text-slate-900">
             Relatórios
           </h1>
-          <p className="mt-1 text-[clamp(8px,0.7vw,11px)] text-gray-600">
+          <p className="mt-1 text-[clamp(12px,0.95vw,15px)] text-gray-600">
             Relatórios da casa organizados por categoria
           </p>
         </div>
@@ -90,7 +90,7 @@ export default function RelatoriosPage() {
         <div className="flex items-center gap-[0.6vw]">
           <SeletorMes value={mes} onChange={setMes} />
           <NovoRelatorioBtn
-            className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(8px,0.7vw,11px)]
+            className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(12px,0.95vw,15px)]
               text-white hover:bg-blue-700"
           />
         </div>
@@ -101,7 +101,7 @@ export default function RelatoriosPage() {
         <section aria-labelledby="titulo-categorias">
           <h2
             id="titulo-categorias"
-            className="mb-[1vh] text-[clamp(10px,0.85vw,14px)] text-slate-800"
+            className="mb-[1vh] text-[clamp(14px,1.15vw,20px)] text-slate-800"
           >
             Categorias
           </h2>
@@ -119,7 +119,7 @@ export default function RelatoriosPage() {
 
         <section aria-labelledby="titulo-recentes">
           <div className="mb-[1vh] flex items-center justify-between">
-            <h2 id="titulo-recentes" className="text-[clamp(10px,0.85vw,14px)] text-slate-800">
+            <h2 id="titulo-recentes" className="text-[clamp(14px,1.15vw,20px)] text-slate-800">
               Relatórios recentes
             </h2>
             <Button
@@ -127,7 +127,7 @@ export default function RelatoriosPage() {
               variant="link"
               size="xs"
               onClick={() => abrirCategoria('todos')}
-              className="text-[clamp(7px,0.6vw,10px)] text-blue-600"
+              className="text-[clamp(10px,0.82vw,13px)] text-blue-600"
             >
               Ver todos os relatórios
               <ArrowRight />

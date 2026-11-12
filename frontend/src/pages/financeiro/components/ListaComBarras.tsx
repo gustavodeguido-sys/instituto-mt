@@ -25,19 +25,19 @@ export function ListaComBarras({
 }) {
   return (
     <section
-      className="flex flex-col rounded-[1.2vw] bg-white p-[1vw] shadow-sm"
+      className="flex flex-col rounded-[1.2vw] bg-white p-[1.4vw] shadow-sm"
       aria-labelledby={id}
     >
       <div className="mb-[1.4vh] flex items-center justify-between gap-2">
-        <h2 id={id} className="text-[clamp(10px,0.85vw,14px)] text-slate-900">
+        <h2 id={id} className="text-[clamp(14px,1.15vw,20px)] text-slate-900">
           {titulo}
         </h2>
-        <strong className="text-[clamp(9px,0.75vw,13px)] text-slate-900">
+        <strong className="text-[clamp(12px,1vw,16px)] text-slate-900">
           {total === undefined ? '—' : formatarReais(total)}
         </strong>
       </div>
 
-      <ul className="flex flex-col gap-[1.4vh] text-[clamp(8px,0.65vw,11px)]">
+      <ul className="flex flex-col gap-[1.4vh] text-[clamp(11px,0.9vw,14px)]">
         {itens.map(({ id: itemId, label, valor, cor }) => {
           const largura = porcentagemDe(valor, total ?? 0)
           return (

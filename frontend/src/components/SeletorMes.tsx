@@ -20,7 +20,7 @@ export function SeletorMes({
       onChange={(event) => onChange(event.target.value)}
       aria-label={rotulo}
       className="h-[4vh] min-h-8 rounded-lg border border-input bg-white px-3
-        text-[clamp(8px,0.7vw,11px)] shadow-xs outline-none
+        text-[clamp(12px,0.95vw,15px)] shadow-xs outline-none
         focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
     >
       {/* Garante que um mês vindo da URL fora da lista também apareça */}

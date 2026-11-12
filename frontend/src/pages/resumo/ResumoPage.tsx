@@ -112,13 +112,13 @@ export default function ResumoPage() {
       {/* Cabeçalho: título e botão de check-in */}
       <header className="flex items-end justify-between gap-4">
         <div>
-          <h1 className="text-[clamp(1.25rem,2vw,2rem)] uppercase text-slate-900">Resumo</h1>
-          <p className="mt-1 text-[clamp(8px,0.7vw,11px)] text-gray-600">
+          <h1 className="text-[clamp(1.5rem,2.2vw,2.5rem)] uppercase text-slate-900">Resumo</h1>
+          <p className="mt-1 text-[clamp(12px,0.95vw,15px)] text-gray-600">
             Visão geral do sistema
           </p>
         </div>
         <AddCheckIn
-          className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(8px,0.7vw,11px)]
+          className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(12px,0.95vw,15px)]
             text-white hover:bg-blue-700"
         />
       </header>
@@ -128,19 +128,19 @@ export default function ResumoPage() {
         {cards.map(({ titulo, valor, descricao, icone: Icone }) => (
           <article
             key={titulo}
-            className="flex flex-col rounded-[1.2vw] bg-white p-[1vw] shadow-sm"
+            className="flex flex-col rounded-[1.2vw] bg-white p-[1.4vw] shadow-sm"
           >
             <div className="flex items-start justify-between">
-              <h3 className="text-[clamp(8px,0.7vw,11px)] text-slate-700">{titulo}</h3>
+              <h3 className="text-[clamp(12px,0.95vw,15px)] text-slate-700">{titulo}</h3>
               <span
-                className="flex size-7 items-center justify-center rounded-lg
+                className="flex size-9 items-center justify-center rounded-lg
                   bg-emerald-50 text-emerald-600"
               >
-                <Icone className="size-3.5" aria-hidden="true" />
+                <Icone className="size-[18px]" aria-hidden="true" />
               </span>
             </div>
             <strong className="strong-text">{valor ?? '—'}</strong>
-            <p className="mt-[0.8vh] text-[clamp(7px,0.6vw,10px)] text-slate-500">
+            <p className="mt-[0.8vh] text-[clamp(10px,0.82vw,13px)] text-slate-500">
               {descricao}
             </p>
           </article>
@@ -157,27 +157,27 @@ export default function ResumoPage() {
             bg-white shadow-sm"
           aria-labelledby="titulo-hospedagens"
         >
-          <div className="px-[1vw] pt-[1.4vh] pb-[1vh]">
-            <h2 id="titulo-hospedagens" className="text-[clamp(10px,0.85vw,14px)] text-slate-900">
+          <div className="px-[1.4vw] pt-[1.4vh] pb-[1vh]">
+            <h2 id="titulo-hospedagens" className="text-[clamp(14px,1.15vw,20px)] text-slate-900">
               Hospedagens atuais
             </h2>
-            <p className="text-[clamp(7px,0.6vw,10px)] text-slate-500">
+            <p className="text-[clamp(10px,0.82vw,13px)] text-slate-500">
               Quem está na casa neste momento
             </p>
           </div>
 
           <div className="min-h-0 flex-1 overflow-y-auto">
-            <Table className="text-[clamp(8px,0.65vw,11px)]">
+            <Table className="text-[clamp(11px,0.9vw,14px)]">
               <TableHeader className="sticky top-0 z-10 bg-slate-50">
                 <TableRow className="hover:bg-transparent">
-                  <TableHead className="pl-[1vw] text-[0.9em] uppercase text-slate-500">
+                  <TableHead className="pl-[1.4vw] text-[0.9em] uppercase text-slate-500">
                     Paciente
                   </TableHead>
                   <TableHead className="text-[0.9em] uppercase text-slate-500">
                     Acompanhante
                   </TableHead>
                   <TableHead className="text-[0.9em] uppercase text-slate-500">Quarto</TableHead>
-                  <TableHead className="pr-[1vw] text-[0.9em] uppercase text-slate-500">
+                  <TableHead className="pr-[1.4vw] text-[0.9em] uppercase text-slate-500">
                     Entrada
                   </TableHead>
                 </TableRow>
@@ -197,12 +197,12 @@ export default function ResumoPage() {
                 ) : (
                   hospedagens.map((hospedagem) => (
                     <TableRow key={hospedagem.id}>
-                      <TableCell className="pl-[1vw] font-bold text-slate-800">
+                      <TableCell className="pl-[1.4vw] font-bold text-slate-800">
                         {hospedagem.paciente}
                       </TableCell>
                       <TableCell className="text-slate-700">{hospedagem.acompanhante}</TableCell>
                       <TableCell className="text-slate-700">{hospedagem.quarto}</TableCell>
-                      <TableCell className="pr-[1vw] text-slate-700">
+                      <TableCell className="pr-[1.4vw] text-slate-700">
                         {hospedagem.dataEntrada}
                       </TableCell>
                     </TableRow>
@@ -215,18 +215,18 @@ export default function ResumoPage() {
 
         {/* Próximas hospedagens */}
         <section
-          className="flex min-h-0 flex-col rounded-[1.2vw] bg-white p-[1vw] shadow-sm"
+          className="flex min-h-0 flex-col rounded-[1.2vw] bg-white p-[1.4vw] shadow-sm"
           aria-labelledby="titulo-proximas"
         >
-          <h2 id="titulo-proximas" className="text-[clamp(10px,0.85vw,14px)] text-slate-900">
+          <h2 id="titulo-proximas" className="text-[clamp(14px,1.15vw,20px)] text-slate-900">
             Próximas hospedagens
           </h2>
-          <p className="text-[clamp(7px,0.6vw,10px)] text-slate-500">Chegadas previstas</p>
+          <p className="text-[clamp(10px,0.82vw,13px)] text-slate-500">Chegadas previstas</p>
 
           {proximasHospedagens.length === 0 ? (
             <div
               className="flex flex-1 items-center justify-center
-                text-[clamp(8px,0.65vw,11px)]"
+                text-[clamp(11px,0.9vw,14px)]"
             >
               <EstadoVazio
                 icone={CalendarClock}
@@ -240,7 +240,7 @@ export default function ResumoPage() {
                 <li
                   key={proxima.id}
                   className="flex items-center justify-between rounded-lg bg-slate-50
-                    px-[0.6vw] py-[0.6vh] text-[clamp(8px,0.65vw,11px)]"
+                    px-[0.6vw] py-[0.6vh] text-[clamp(11px,0.9vw,14px)]"
                 >
                   <div>
                     <p className="font-bold text-slate-800">{proxima.paciente}</p>
@@ -254,7 +254,7 @@ export default function ResumoPage() {
         </section>
 
         {/* Ocupação da casa: barra dividida em pacientes, acompanhantes e vagas livres */}
-        <section className="min-h-0 rounded-[1.2vw] bg-white p-[1vw] shadow-sm">
+        <section className="min-h-0 rounded-[1.2vw] bg-white p-[1.4vw] shadow-sm">
           <ProgressPrimitive.Root
             value={ocupacaoPercentual}
             className="flex flex-col gap-[1vh]"
@@ -262,11 +262,11 @@ export default function ResumoPage() {
           >
             <div className="flex w-full items-center justify-between">
               <ProgressLabel
-                className="text-[clamp(10px,0.85vw,14px)] font-bold text-slate-900"
+                className="text-[clamp(14px,1.15vw,20px)] font-bold text-slate-900"
               >
                 Ocupação da casa
               </ProgressLabel>
-              <ProgressValue className="text-[clamp(8px,0.65vw,11px)] text-slate-500">
+              <ProgressValue className="text-[clamp(11px,0.9vw,14px)] text-slate-500">
                 {() => (ocupacao ? `${pacientes + acompanhantes}/${capacidade}` : '—')}
               </ProgressValue>
             </div>
@@ -284,7 +284,7 @@ export default function ResumoPage() {
           </ProgressPrimitive.Root>
 
           <ul
-            className="mt-[1.2vh] grid gap-[0.6vh] text-[clamp(8px,0.65vw,11px)]
+            className="mt-[1.2vh] grid gap-[0.6vh] text-[clamp(11px,0.9vw,14px)]
               text-slate-500"
           >
             {legendaOcupacao.map(({ label, valor, cor }) => (

@@ -24,20 +24,20 @@ export function CategoriaCard ({
             type="button"
             onClick={() => onOpen(id)}
             className="group flex flex-col rounded-[1.2vw] border border-transparent bg-white
-                p-[1vw] text-left shadow-sm transition hover:border-emerald-300
+                p-[1.4vw] text-left shadow-sm transition hover:border-emerald-300
                 focus-visible:outline-2 focus-visible:outline-offset-2
                 focus-visible:outline-[#3569d4]"
         >
             <div className="flex items-start justify-between">
                 <span
-                    className="flex size-7 items-center justify-center rounded-lg
+                    className="flex size-9 items-center justify-center rounded-lg
                         bg-emerald-50 text-emerald-600"
                 >
-                    <Icone className="size-3.5" aria-hidden="true" />
+                    <Icone className="size-[18px]" aria-hidden="true" />
                 </span>
                 {dados?.destaque && (
                     <span
-                        className={`rounded-md px-2 py-0.5 text-[clamp(7px,0.55vw,9px)]
+                        className={`rounded-md px-2 py-0.5 text-[clamp(10px,0.76vw,12px)]
                             font-medium ${coresDestaque[dados.destaque.tom]}`}
                     >
                         {dados.destaque.texto}
@@ -45,12 +45,12 @@ export function CategoriaCard ({
                 )}
             </div>
 
-            <h3 className="mt-[1vh] text-[clamp(9px,0.8vw,13px)] text-slate-900">{titulo}</h3>
-            <p className="mt-[0.5vh] text-[clamp(7px,0.62vw,10px)] text-slate-500">{descricao}</p>
+            <h3 className="mt-[1vh] text-[clamp(12px,1.05vw,17px)] text-slate-900">{titulo}</h3>
+            <p className="mt-[0.5vh] text-[clamp(10px,0.82vw,13px)] text-slate-500">{descricao}</p>
 
             <footer
                 className="mt-auto flex items-center justify-between border-t pt-[0.8vh]
-                    text-[clamp(7px,0.58vw,9px)] text-slate-500"
+                    text-[clamp(10px,0.76vw,12px)] text-slate-500"
             >
                 <span>
                     {totalRelatorios} {rotuloRelatorios} ·{' '}

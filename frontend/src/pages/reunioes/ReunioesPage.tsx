@@ -50,7 +50,7 @@ export default function ReunioesPage() {
       </div>
       <NovaReuniaoBtn
       onAgendada={carregarProximas}
-        className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(8px,0.7vw,11px)]
+        className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(12px,0.95vw,15px)]
           text-white hover:bg-blue-700"
       />
     </div> 
@@ -75,10 +75,10 @@ export default function ReunioesPage() {
 
 <section aria-labelledby="titulo-passadas">
   <div className="mb-[1vh] flex items-center justify-between">
-    <h2 id="titulo-passadas" className="text-[clamp(10px,0.85vw,14px)] font-bold text-slate-800">
+    <h2 id="titulo-passadas" className="text-[clamp(14px,1.15vw,20px)] font-bold text-slate-800">
       Reuniões passadas
     </h2>
-    <span className="text-[clamp(7px,0.6vw,10px)] text-slate-600">Últimos 3 meses</span>
+    <span className="text-[clamp(10px,0.82vw,13px)] text-slate-600">Últimos 3 meses</span>
   </div>
 
   {carregandoRecentes ? (

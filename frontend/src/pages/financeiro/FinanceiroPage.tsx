@@ -158,8 +158,8 @@ export default function FinanceiroPage() {
       {/* Cabeçalho: título, mês, exportar e novo lançamento */}
       <header className="flex items-end justify-between gap-4">
         <div>
-          <h1 className="text-[clamp(1.25rem,2vw,2rem)] uppercase text-slate-900">Financeiro</h1>
-          <p className="mt-1 text-[clamp(8px,0.7vw,11px)] text-gray-600">
+          <h1 className="text-[clamp(1.5rem,2.2vw,2.5rem)] uppercase text-slate-900">Financeiro</h1>
+          <p className="mt-1 text-[clamp(12px,0.95vw,15px)] text-gray-600">
             Resumo financeiro da casa
           </p>
         </div>
@@ -171,13 +171,13 @@ export default function FinanceiroPage() {
             variant="outline"
             onClick={handleExportar}
             disabled={exportando || !painel}
-            className="h-[4vh] min-h-8 bg-white px-[1.6vw] text-[clamp(8px,0.7vw,11px)]"
+            className="h-[4vh] min-h-8 bg-white px-[1.6vw] text-[clamp(12px,0.95vw,15px)]"
           >
             {exportando ? 'Exportando...' : 'Exportar'}
           </Button>
           <NovoLancamentoBtn
             onLancar={() => setVersao((v) => v + 1)}
-            className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(8px,0.7vw,11px)]
+            className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(12px,0.95vw,15px)]
               text-white hover:bg-blue-700"
           />
         </div>
@@ -201,17 +201,17 @@ export default function FinanceiroPage() {
           {cards.map(({ titulo, valor, descricao, icone: Icone }) => (
             <article
               key={titulo}
-              className="flex flex-col rounded-[1.2vw] bg-white p-[1vw] shadow-sm"
+              className="flex flex-col rounded-[1.2vw] bg-white p-[1.4vw] shadow-sm"
             >
               <div className="flex items-start justify-between">
-                <h3 className="text-[clamp(8px,0.7vw,11px)] font-medium text-slate-600">
+                <h3 className="text-[clamp(12px,0.95vw,15px)] font-medium text-slate-600">
                   {titulo}
                 </h3>
                 <span
-                  className="flex size-7 items-center justify-center rounded-lg
+                  className="flex size-9 items-center justify-center rounded-lg
                     bg-emerald-50 text-emerald-600"
                 >
-                  <Icone className="size-3.5" aria-hidden="true" />
+                  <Icone className="size-[18px]" aria-hidden="true" />
                 </span>
               </div>
               <strong
@@ -221,7 +221,7 @@ export default function FinanceiroPage() {
               >
                 {valor === undefined ? '—' : formatarReais(valor)}
               </strong>
-              <p className="mt-[0.6vh] text-[clamp(7px,0.6vw,10px)] text-slate-500">
+              <p className="mt-[0.6vh] text-[clamp(10px,0.82vw,13px)] text-slate-500">
                 {descricao}
               </p>
             </article>

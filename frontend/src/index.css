@@ -18,7 +18,9 @@
 
 :root {
   color: #19364b;
-  background: linear-gradient(to top, #0bb8a9, #05524b);
+  /* Cinza do container: as telas internas são tela cheia, então o fundo só
+     aparece em rolagem elástica. O gradiente verde-água ficou na LoginPage. */
+  background: #D8DEE7;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -35,13 +37,15 @@ body {
   font-weight: 500;
 }
 
-button {
-  font: inherit;
-}
-
 /* @layer base: fica abaixo das classes utilitárias, então um `font-sans` ou
    `font-bold` colocado no componente ainda vence esta regra. */
 @layer base {
+  /* Dentro da layer: fora dela, este `font: inherit` vencia os utilitários e todo
+     <Button> ficava com 16px, ignorando `text-sm`, `text-[clamp(...)]` etc. */
+  button {
+    font: inherit;
+  }
+
   h1,
   h2,
   h3,

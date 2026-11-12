@@ -21,17 +21,17 @@ export function DoacoesCard({ painel }: { painel: PainelFinanceiro | null }) {
 
   return (
     <section
-      className="flex flex-col rounded-[1.2vw] bg-white p-[1vw] shadow-sm"
+      className="flex flex-col rounded-[1.2vw] bg-white p-[1.4vw] shadow-sm"
       aria-labelledby="titulo-doacoes"
     >
-      <h2 id="titulo-doacoes" className="text-[clamp(10px,0.85vw,14px)] text-slate-900">
+      <h2 id="titulo-doacoes" className="text-[clamp(14px,1.15vw,20px)] text-slate-900">
         Doações
       </h2>
 
       <strong className="valor-destaque mt-[0.8vh]">
         {painel ? formatarReais(total) : '—'}
       </strong>
-      <p className="text-[clamp(7px,0.6vw,10px)] text-slate-500">
+      <p className="text-[clamp(10px,0.82vw,13px)] text-slate-500">
         {painel
           ? `${painel.quantidadeDoacoes} ${painel.quantidadeDoacoes === 1 ? 'doação' : 'doações'} no mês · ${partePercentual}% da arrecadação`
           : 'Sem doações registradas no mês'}
@@ -40,8 +40,8 @@ export function DoacoesCard({ painel }: { painel: PainelFinanceiro | null }) {
       <div className="mt-[1.2vh] grid grid-cols-2 gap-[0.6vw]">
         {subtotais.map(({ label, valor }) => (
           <div key={label} className="rounded-lg bg-slate-50 px-[0.7vw] py-[0.8vh]">
-            <p className="text-[clamp(7px,0.58vw,9px)] text-slate-500">{label}</p>
-            <strong className="text-[clamp(9px,0.8vw,13px)] text-slate-900">
+            <p className="text-[clamp(10px,0.76vw,12px)] text-slate-500">{label}</p>
+            <strong className="text-[clamp(12px,1.05vw,17px)] text-slate-900">
               {painel ? formatarReais(valor) : '—'}
             </strong>
           </div>
@@ -49,14 +49,14 @@ export function DoacoesCard({ painel }: { painel: PainelFinanceiro | null }) {
       </div>
 
       <h3
-        className="mt-[1.4vh] mb-[0.6vh] text-[clamp(7px,0.55vw,9px)] font-bold
+        className="mt-[1.4vh] mb-[0.6vh] text-[clamp(10px,0.76vw,12px)] font-bold
           tracking-wide text-slate-500 uppercase"
       >
         Últimas doações
       </h3>
 
       {ultimasDoacoes.length === 0 ? (
-        <div className="flex flex-1 items-center justify-center py-[1vh] text-[clamp(8px,0.65vw,11px)]">
+        <div className="flex flex-1 items-center justify-center py-[1vh] text-[clamp(11px,0.9vw,14px)]">
           <EstadoVazio
             icone={HandHeart}
             titulo="Nenhuma doação recente"
@@ -64,7 +64,7 @@ export function DoacoesCard({ painel }: { painel: PainelFinanceiro | null }) {
           />
         </div>
       ) : (
-        <ul className="flex flex-col gap-[0.6vh] text-[clamp(8px,0.65vw,11px)]">
+        <ul className="flex flex-col gap-[0.6vh] text-[clamp(11px,0.9vw,14px)]">
           {ultimasDoacoes.map((doacao) => (
             <li key={doacao.id} className="flex items-center justify-between gap-2">
               <span className="truncate text-slate-700">

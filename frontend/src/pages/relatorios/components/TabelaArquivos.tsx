@@ -34,14 +34,14 @@ export function TabelaArquivos({
   const totalColunas = mostrarCategoria ? 5 : 4
 
   return (
-    <Table className="text-[clamp(8px,0.65vw,11px)]">
+    <Table className="text-[clamp(11px,0.9vw,14px)]">
       <TableHeader className="sticky top-0 z-10 bg-slate-50">
         <TableRow className="hover:bg-transparent">
-          <TableHead className={`pl-[1vw] ${classeCabecalho}`}>Relatório</TableHead>
+          <TableHead className={`pl-[1.4vw] ${classeCabecalho}`}>Relatório</TableHead>
           {mostrarCategoria && <TableHead className={classeCabecalho}>Categoria</TableHead>}
           <TableHead className={classeCabecalho}>Período</TableHead>
           <TableHead className={classeCabecalho}>Gerado por</TableHead>
-          <TableHead className="pr-[1vw]">
+          <TableHead className="pr-[1.4vw]">
             <span className="sr-only">Ações</span>
           </TableHead>
         </TableRow>
@@ -57,13 +57,13 @@ export function TabelaArquivos({
         ) : (
           arquivos.map((arquivo) => (
             <TableRow key={arquivo.id}>
-              <TableCell className="pl-[1vw]">
+              <TableCell className="pl-[1.4vw]">
                 <div className="flex items-center gap-[0.6vw]">
                   <span
-                    className="flex size-7 shrink-0 items-center justify-center rounded-lg
+                    className="flex size-9 shrink-0 items-center justify-center rounded-lg
                       bg-emerald-50 text-emerald-600"
                   >
-                    <FileText className="size-3.5" aria-hidden="true" />
+                    <FileText className="size-[18px]" aria-hidden="true" />
                   </span>
                   <div>
                     <p className="font-bold text-slate-800">{arquivo.nome}</p>
@@ -87,7 +87,7 @@ export function TabelaArquivos({
                 {formatarPeriodo(arquivo.periodoInicio, arquivo.periodoFim)}
               </TableCell>
               <TableCell className="text-slate-700">{arquivo.geradoPor}</TableCell>
-              <TableCell className="pr-[1vw] text-right">
+              <TableCell className="pr-[1.4vw] text-right">
                 {/* Link com visual de botão: o atributo download baixa o arquivo */}
                 <a
                   href={arquivo.url}
