@@ -62,7 +62,7 @@ Ambiente: Windows. No frontend não há testes automatizados configurados.
 ```
 src/
 ├── App.tsx              rotas; "/" = login, demais rotas dentro de <AppLayout>
-├── layouts/AppLayout    Sidebar + container cinza com <Outlet/>
+├── layouts/AppLayout    tela cheia: Sidebar + <main> cinza (rolável) com <Outlet/>
 ├── components/          compartilhados: Sidebar, SeletorMes, EstadoVazio, useMesSelecionado…
 │   └── ui/              componentes shadcn — gerados pelo CLI
 ├── pages/<modulo>/      uma pasta por tela
@@ -120,14 +120,40 @@ Estado que deve sobreviver a reload/navegação fica na URL (ver `useMesSelecion
   (`formatarReais` em `pages/financeiro/utils.ts`, via `Intl.NumberFormat` BRL).
 
 ### Visual / layout
-- Layout em unidades de viewport: containers em `vw`/`vh`, fontes com `clamp()`
-  (ex.: `text-[clamp(8px,0.7vw,11px)]`). Seguir esse padrão para manter proporção.
-- Fundo do app: gradiente verde-água (`#0bb8a9 → #05524b`); container `bg-[#D8DEE7]`
-  `rounded-[2vw]`; cards `bg-white rounded-[1.2vw] p-[1vw] shadow-sm`.
+Referência: Figma "Sistema IMT (cópia)", desenhado em 1440×1024. Os valores abaixo
+estão calibrados para essa largura (ex.: `0.95vw` ≈ 14px em 1440px).
+
+- **Telas internas em tela cheia** (`AppLayout`): wrapper `h-screen overflow-hidden
+  bg-[#D8DEE7]`; sidebar à esquerda e `<main>` com o resto (`flex-1 min-h-0 min-w-0`,
+  `px-[3.3vw] py-[3.9vh]`, `overflow-y-auto`). Nada de container flutuante nem
+  gradiente aparecendo atrás. Páginas usam `flex min-h-0 flex-1 flex-col` para
+  ocupar a altura, e listas/tabelas rolam por dentro.
+- **Sidebar**: altura total, `w-[17.2vw] min-w-[180px]`, `bg-white`,
+  `rounded-r-[2vw]` (cantos arredondados só do lado com espaço livre),
+  `border-r border-[#17c4eb]` e sombra leve à direita. Itens `h-[4.7vh] min-h-10`,
+  `rounded-[1.1vw]`, rótulo `text-[clamp(12px,1.05vw,16px)]`, ícone lucide
+  `size-[clamp(16px,1.53vw,24px)] text-teal-700` (~22px). Ícones do menu vêm do
+  `lucide-react`, não de arquivos em `/public`.
+- O gradiente verde-água (`#0bb8a9 → #05524b`) fica só na tela de login.
+- Unidades de viewport: espaçamentos em `vw`/`vh`, fontes com `clamp()`. Escala de texto:
+  | Uso | Classe | ≈ em 1440px |
+  |---|---|---|
+  | título da página (`h1`, uppercase) | `text-[clamp(1.5rem,2.2vw,2.5rem)]` | 32px |
+  | título de card/seção | `text-[clamp(14px,1.15vw,20px)]` | 17px |
+  | subtítulo da página, botões do cabeçalho | `text-[clamp(12px,0.95vw,15px)]` | 14px |
+  | tabelas e listas | `text-[clamp(11px,0.9vw,14px)]` | 13px |
+  | descrições, legendas | `text-[clamp(10px,0.82vw,13px)]` | 12px |
+  | rótulos miúdos | `text-[clamp(10px,0.76vw,12px)]` | 11px |
+- Cards: `bg-white rounded-[1.2vw] p-[1.4vw] shadow-sm`; células de tabela encostadas
+  na borda do card usam `pl-[1.4vw]`/`pr-[1.4vw]`. Ícone de card: caixa
+  `size-9 rounded-lg bg-emerald-50 text-emerald-600` com ícone `size-[18px]`.
 - Acentos: `emerald-*` (ícones, filtros ativos, selos ok), `blue-600` (botão primário e
-  links), `amber-*` (alerta), `#17c4eb` (borda da sidebar).
+  links; é o token `primary` do shadcn, definido em `index.css`), `amber-*` (alerta),
+  `#17c4eb` (borda da sidebar).
 - Selos/badges: `rounded-md px-2 py-0.5 font-medium bg-<cor>-50 text-<cor>-700`.
-- Títulos de página: `h1` uppercase `text-[clamp(1.25rem,2vw,2rem)]` + subtítulo cinza.
+- Títulos de página: `h1` + subtítulo cinza (tamanhos na tabela acima).
+- CSS global que mexe em elementos (ex.: `button { font: inherit }`) vai dentro de
+  `@layer base` no `index.css`. Fora da layer ele vence os utilitários do Tailwind.
 - Foco acessível: `focus-visible:outline-2 focus-visible:outline-[#3569d4]`;
   usar `aria-label`, `aria-current`, `aria-pressed`, `aria-labelledby` como já feito.
 

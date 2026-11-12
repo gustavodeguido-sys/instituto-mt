@@ -16,6 +16,15 @@
   --font-heading: "Plus Jakarta Sans Variable", "Inter Variable", system-ui, sans-serif;
 }
 
+/* Cor primária dos componentes shadcn: o variant "default" do Button usa
+   `bg-primary`/`text-primary-foreground`, e sem estes tokens o botão ficava sem
+   fundo (ex.: "Salvar hóspede"). Aponta para o blue-600, o azul dos botões
+   primários do projeto. `inline`: usa a variável do Tailwind direto, sem cópia. */
+@theme inline {
+  --color-primary: var(--color-blue-600);
+  --color-primary-foreground: var(--color-white);
+}
+
 :root {
   color: #19364b;
   /* Cinza do container: as telas internas são tela cheia, então o fundo só
