@@ -108,6 +108,10 @@ export default function NovaReuniaoBtn({ className, onAgendada }: NovaReuniaoPro
                                     <option value="presencial">Presencial</option>
                                 </select>
                             </Field>
+                            <Field>
+                              <Label htmlFor="local-reuniao">Local / link</Label>
+                                <Input id="local-reuniao" name="local" type="text" required />
+                            </Field>
                         </div>
                         <Field>
                             <Label htmlFor="pauta-reuniao">Pauta (um item por linha)</Label>
