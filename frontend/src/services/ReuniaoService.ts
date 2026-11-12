@@ -1,18 +1,13 @@
+import { api } from "@/lib/api";
 import type { Reuniao, NovaReuniao, ReuniaoPassada } from "@/types/reunioes";
 
-function isoDaquiA(dias: number) {
-  const d = new Date()
-  d.setDate(d.getDate() + dias)
-  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
-}
-
 export async function buscarReunioes(): Promise<Reuniao[]>  {
-    return []  
+    return api<Reuniao[]>('/reunioes')  
 }
 export async function buscarReunioesPassadas(limite = 5): Promise<ReuniaoPassada[]> {
-    return []
+    return api<ReuniaoPassada[]>(`/reunioes/passadas?limite=${limite}`)
 }
 
 export async function agendarReuniao(dados: NovaReuniao): Promise<void> {
-    void dados
+    await api('/reunioes', { method: 'POST', body: JSON.stringify(dados) })
 }
