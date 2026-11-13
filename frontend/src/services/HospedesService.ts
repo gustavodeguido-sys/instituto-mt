@@ -17,7 +17,6 @@ export async function buscarResumoHospedes(): Promise<ResumoHospedes> {
     posTransplante: 0,
     internadosHc: 0,
     acompanhantes: 0,
-    pacientesSemAcompanhante: 0,
     vagasLivres: 0,
     saidasPrevistasSemana: 0,
   }

@@ -15,7 +15,8 @@ export interface Hospede {
   id: string
   paciente: string
   tipoTransplante: string
-  acompanhante: string | null
+  // Obrigatório: nenhum paciente se hospeda sozinho (NOT NULL no banco).
+  acompanhante: string
   parentesco: string | null
   quarto: string
   dataEntrada: string
@@ -30,7 +31,6 @@ export interface ResumoHospedes {
   posTransplante: number
   internadosHc: number
   acompanhantes: number
-  pacientesSemAcompanhante: number
   vagasLivres: number
   saidasPrevistasSemana: number
 }

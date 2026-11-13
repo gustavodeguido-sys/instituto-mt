@@ -26,6 +26,10 @@ public class Acompanhante {
         this.paciente = paciente;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     public String getNome() {
         return nome;
     }

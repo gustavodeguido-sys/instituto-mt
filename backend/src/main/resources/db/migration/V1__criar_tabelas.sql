@@ -22,10 +22,11 @@ CREATE TABLE acompanhante (
 
 -- Uma estadia na casa. data_saida NULL = ainda hospedado.
 -- data_entrada no futuro = "próxima hospedagem".
+-- acompanhante_id NOT NULL: nenhum paciente se hospeda sozinho.
 CREATE TABLE hospedagem (
     id                   UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     paciente_id          UUID   NOT NULL REFERENCES paciente(id),
-    acompanhante_id      UUID   REFERENCES acompanhante(id),
+    acompanhante_id      UUID   NOT NULL REFERENCES acompanhante(id),
     quarto_id            BIGINT NOT NULL REFERENCES quarto(id),
     data_entrada         DATE   NOT NULL,
     data_saida_prevista  DATE,

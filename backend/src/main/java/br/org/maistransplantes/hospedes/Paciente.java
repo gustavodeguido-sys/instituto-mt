@@ -15,7 +15,7 @@ public class Paciente {
     private UUID id;
     private String nome;
 
-    @Enumerated(EnumType.STRING) 
+    // Texto livre (VARCHAR no banco, string no front): não é enum, então sem @Enumerated.
     private String tipoTransplante;
 
 

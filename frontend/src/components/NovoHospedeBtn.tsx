@@ -46,7 +46,7 @@ export default function NovoHospedeBtn({ className }: NovoHospedeBtnProps) {
         <DialogHeader>
           <DialogTitle className="font-bold">Adicionar hóspede</DialogTitle>
           <DialogDescription>
-            Cadastre o paciente e, se houver, o acompanhante hospedado na casa.
+            Cadastre o paciente e o acompanhante hospedados na casa.
           </DialogDescription>
         </DialogHeader>
 
@@ -80,7 +80,8 @@ export default function NovoHospedeBtn({ className }: NovoHospedeBtnProps) {
                 <Input
                   id="hospede-acompanhante"
                   name="acompanhante"
-                  placeholder="Opcional"
+                  placeholder="Nome completo"
+                  required
                 />
               </Field>
 

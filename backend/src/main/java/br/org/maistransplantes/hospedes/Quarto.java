@@ -1,6 +1,5 @@
 package br.org.maistransplantes.hospedes;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -8,15 +7,14 @@ import jakarta.persistence.*;
 @Entity 
 @Table(name = "quarto")
 public class Quarto {
-    @Id @GeneratedValue(strategy = GenerationType.UUID)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String numero;
     private int capacidade;
 
 
     protected Quarto() {}
-        public Quarto(Long id, String numero, int capacidade) {
-            this.id = id;
+        public Quarto(String numero, int capacidade) {
             this.numero = numero;
             this.capacidade = capacidade;
         }

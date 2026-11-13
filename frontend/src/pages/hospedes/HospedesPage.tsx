@@ -117,7 +117,7 @@ export default function HospedesPage() {
       const passaBusca =
         termo === '' ||
         normalizar(hospede.paciente).includes(termo) ||
-        normalizar(hospede.acompanhante ?? '').includes(termo) ||
+        normalizar(hospede.acompanhante).includes(termo) ||
         hospede.quarto.includes(termo)
 
       return passaFiltro && passaBusca
@@ -319,7 +319,7 @@ export default function HospedesPage() {
                       <p className="text-slate-500">{hospede.tipoTransplante}</p>
                     </TableCell>
                     <TableCell>
-                      <p className="text-slate-800">{hospede.acompanhante ?? 'Sem acompanhante'}</p>
+                      <p className="text-slate-800">{hospede.acompanhante}</p>
                       <p className="text-slate-500">{hospede.parentesco ?? '—'}</p>
                     </TableCell>
                     <TableCell className="text-slate-700">{hospede.quarto}</TableCell>
