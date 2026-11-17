@@ -11,6 +11,9 @@ public interface HospedagemRepository extends JpaRepository<Hospedagem, UUID> {
     @EntityGraph(attributePaths = {"paciente", "acompanhante", "quarto"}) 
     List<Hospedagem> findByDataSaidaIsNullAndDataEntradaLessThanEqualOrderByDataEntradaAsc(LocalDate hoje);
 
+    @EntityGraph(attributePaths = {"paciente", "quarto"})
+    List<Hospedagem> findByDataSaidaIsNullAndDataEntradaAfterOrderByDataEntradaAsc(LocalDate hoje);
+
     boolean existsByPacienteIdAndDataSaidaIsNull(UUID pacienteId);
     long countByQuartoIdAndDataSaidaIsNull(Long quartoId);
 }
