@@ -66,6 +66,7 @@ export default function HospedesPage() {
   const [atualizadoEm, setAtualizadoEm] = useState<Date | null>(null)
   const [carregando, setCarregando] = useState(true)
   const [erro, setErro] = useState<string | null>(null)
+  const [versao, setVersao] = useState(0)
 
   // useState: estado da interface (texto da busca, filtro ativo e página da tabela).
   const [busca, setBusca] = useState('')
@@ -91,7 +92,7 @@ export default function HospedesPage() {
       }
     }
     carregarDados()
-  }, [])
+  }, [versao])
 
   // useMemo: conta quantos hóspedes existem em cada filtro (números dos botões).
   // Só recalcula quando a lista de hóspedes muda, não a cada tecla da busca.
@@ -163,7 +164,7 @@ export default function HospedesPage() {
     {
       titulo: 'Acompanhantes',
       valor: resumo?.acompanhantes,
-      descricao: `${resumo?.pacientesSemAcompanhante ?? 0} pacientes sem acompanhante`,
+      descricao: `${resumo?.acompanhantes?? 0} acompanhantes`,
       icone: UserPlus,
     },
     {
@@ -203,6 +204,7 @@ export default function HospedesPage() {
             />
           </div>
           <NovoHospedeBtn
+            onCadastrado={() => setVersao((v) => v + 1)}
             className="h-[4vh] min-h-8 bg-blue-600 px-3 text-[clamp(12px,0.95vw,15px)]
               text-white hover:bg-blue-700"
           />

@@ -1,23 +1,18 @@
-import type { Hospede, ResumoHospedes } from '@/types/hospedes'
+import { api } from '@/lib/api'
+import type { Hospede, NovoHospede, ResumoHospedes } from '@/types/hospedes'
 
 // Ainda não há backend: as funções retornam dados vazios para a tela
 // renderizar o estado vazio. Quando a API existir, basta trocar o corpo
 // por um fetch (ex.: fetch('/api/hospedes')) mantendo as mesmas assinaturas.
 
 export async function buscarHospedes(): Promise<Hospede[]> {
-  return []
+  return api<Hospede[]>('/hospedes')
 }
 
 export async function buscarResumoHospedes(): Promise<ResumoHospedes> {
-  return {
-    hospedadosAgora: 0,
-    capacidadeTotal: 0,
-    pacientes: 0,
-    preTransplante: 0,
-    posTransplante: 0,
-    internadosHc: 0,
-    acompanhantes: 0,
-    vagasLivres: 0,
-    saidasPrevistasSemana: 0,
-  }
+  return api<ResumoHospedes>('/hospedes/resumo')
+}
+
+export async function cadastrarHospede(dados: NovoHospede): Promise<Hospede> {
+  return api<Hospede>('/hospedes', { method: 'POST', body: JSON.stringify(dados) })
 }
