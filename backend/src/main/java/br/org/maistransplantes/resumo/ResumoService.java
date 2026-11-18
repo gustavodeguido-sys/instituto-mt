@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.org.maistransplantes.hospedes.HospedagemRepository;
 import br.org.maistransplantes.hospedes.HospedeService;
 import br.org.maistransplantes.resumo.dto.HospedagemAtualDto;
+import br.org.maistransplantes.resumo.dto.ProximaHospedagemDto;
 import br.org.maistransplantes.resumo.dto.ResumoDashboardDto;
 
 @Service 
@@ -31,7 +32,8 @@ public class ResumoService {
                             .filter(h -> h.getDataEntrada().equals(hoje))
                             .count();
 
-        var proximas = hospedagem.findByDataSaidaIsNullAndDataEntradaAfterOrderByDataEntradaAsc(hoje);
+        var proximasHospedagens = ativas.stream().map(ProximaHospedagemDto::de).toList();
+        hospedagem.findByDataSaidaIsNullAndDataEntradaAfterOrderByDataEntradaAsc(hoje);
         
         // Os números vêm do resumo de hóspedes (r). 100.0 força a conta em double, para
         // não truncar (ex.: 7 * 100 / 12 = 58 em long, mas 58,3 -> arredonda para 58).
@@ -43,10 +45,14 @@ public class ResumoService {
 
         return new ResumoDashboardDto(
             r.hospedadosAgora(),
+            r.pacientes(),
             r.acompanhantes(),
             r.capacidadeTotal(),
-            r.vagasLivres()
-
-        )
+            r.vagasLivres(),
+            ocupacaoPercentual,
+            checkinsHoje,
+            hospedagens,
+            proximasHospedagens
+        );
     }
 }
