@@ -4,7 +4,6 @@ import java.time.YearMonth;
 import java.util.List;
 import java.util.Map;
 
-import br.org.maistransplantes.financeiro.EventoBeneficente;
 import br.org.maistransplantes.financeiro.enums.CategoriaDespesa;
 import br.org.maistransplantes.financeiro.enums.OrigemReceita;
 
@@ -17,7 +16,7 @@ public record PainelFinanceiroDto(
     List<TotalMensalDto> historico, 
     Map<OrigemReceita, Long> porOrigem,
     Map<CategoriaDespesa, Long> porCategoria,
-    int quantidadeDoacoes,
+    long quantidadeDoacoes, // long: é o que o countBy... do repository devolve
     List<DoacaoDto> ultimasDoacoes,
     List<EventoBeneficenteDto> eventos
 ) {}

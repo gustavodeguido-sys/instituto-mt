@@ -34,6 +34,10 @@ public class EventoBeneficente {
         this.local = local;
     }
 
+    public UUID getId() {
+        return id;
+    }
+
     public String getNome() {
         return nome;
     }

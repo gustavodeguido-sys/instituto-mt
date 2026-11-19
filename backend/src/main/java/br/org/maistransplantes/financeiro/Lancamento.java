@@ -3,6 +3,9 @@ package br.org.maistransplantes.financeiro;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import br.org.maistransplantes.financeiro.enums.CategoriaDespesa;
+import br.org.maistransplantes.financeiro.enums.OrigemReceita;
+import br.org.maistransplantes.financeiro.enums.TipoLancamento;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -30,7 +33,7 @@ public class Lancamento {
 
     @Enumerated(EnumType.STRING)
     @Column (nullable = false)
-    private String TipoLancamento;
+    private TipoLancamento tipo;
 
     @Column(nullable = false)
     private String descricao;
@@ -42,23 +45,27 @@ public class Lancamento {
     private LocalDate data;
 
     private String observacoes;
-    private String origem;
-    private String categoria;
+
+    @Enumerated(EnumType.STRING)  
+    private OrigemReceita origem;
+    @Enumerated(EnumType.STRING)
+    private CategoriaDespesa categoria;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "evento_beneficente_id")
+    @JoinColumn(name = "evento_id")
     private EventoBeneficente evento;
 
     protected Lancamento() {}
 
-    public Lancamento(String TipoLancamento, String descricao, long valorCentavos,
-                    LocalDate data, String observacoes, String categoria
+    public Lancamento(TipoLancamento tipo, String descricao, long valorCentavos,
+                    LocalDate data, String observacoes, OrigemReceita origem, CategoriaDespesa categoria
     ) {
-        this.TipoLancamento = TipoLancamento;
+        this.tipo = tipo;
         this.descricao = descricao;
         this.valorCentavos = valorCentavos;
         this.data = data;
         this.observacoes = observacoes;
+        this.origem = origem;
         this.categoria = categoria;
     }
 }
