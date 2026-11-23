@@ -1,7 +1,9 @@
 package br.org.maistransplantes.financeiro;
 
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -153,36 +155,76 @@ public class FinanceiroService {
             .toList();
     }
 
-    @Transactional 
-    public void registrarLancamento(Lancamento l, NovoLancamentoDto observacoes) {
-        // 1. VALIDAÇÃO — já foi feita antes de chegar aqui.
-        //    O controller recebe o DTO com @Valid, então @NotNull, @NotBlank, @Positive
-        //    e a regra @AssertTrue (receita -> origem, despesa -> categoria) já passaram.
-        //    O service não precisa repetir essas checagens.
+    // Recebe o DTO inteiro (já validado pelo @Valid no controller), e não os
+    // campos soltos: o service é quem sabe convertê-lo em entidade.
+    @Transactional
+    public void registrarLancamento(NovoLancamentoDto dto) {
+        // 2. NORMALIZAR OS TEXTOS (evita lixo no banco)
+        //    O DTO é um record (imutável), então guardamos os textos limpos em variáveis.
+        String descricao = dto.descricao().strip();
+        // Observação vazia ou só com espaços vira null: o contrato com o front
+        // usa null para "sem observação", não string vazia.
+        String observacoes = (dto.observacoes() == null || dto.observacoes().isBlank())
+            ? null
+            : dto.observacoes().strip();
 
-        // 2. NORMALIZAR OS TEXTOS (opcional, mas evita lixo no banco)
-        //    - descricao: tirar espaços das pontas (strip)
-        //    - observacoes: se vier null ou só com espaços, guardar null;
-        //      senão, guardar o texto sem os espaços das pontas
-        //    (o contrato com o front usa null para "sem observação", não string vazia)
-        String limparTexto = l.getDescricao().strip();
-        l.setDescricao(limparTexto);
-        // 3. CONVERTER DTO -> ENTIDADE
-        //    - criar um new Lancamento(...) usando o construtor público da entidade
-        //    - passar: tipo, descricao, valor (já em centavos), data, observacoes,
-        //      origem e categoria
-        //    - atenção: no DTO o campo se chama "valor", na entidade "valorCentavos"
-        //    - o id NÃO é passado: o banco/Hibernate gera o UUID ao salvar
-        
-        // 4. SALVAR
-        //    - chamar lancamentoRepository.save(lancamento)
-        //    - como o método é @Transactional, se algo falhar no meio
-        //      a transação é desfeita (rollback) e nada fica gravado pela metade
+        Lancamento lancamento = new Lancamento(
+            dto.tipo(), descricao, dto.valor(), dto.data(),
+            observacoes, dto.origem(), dto.categoria());
+        lancamentoRepository.save(lancamento);
 
-        // 5. RETORNO
-        //    - hoje o método é void: o controller responde 201 Created sem corpo
-        //    - se o front precisar do lançamento criado (ex.: para mostrar o id),
-        //      trocar o retorno por um DTO de resposta e devolver
-        //      algo como XxxDto.de(lancamentoSalvo) — nunca a entidade JPA
+    }
+
+    // Gera o CSV do mês para o botão "Exportar". readOnly: só lê o banco.
+    // Devolve bytes (não DTO): a resposta é um arquivo, não JSON — quem diz ao
+    // navegador "baixe isto" é o controller, com o cabeçalho Content-Disposition.
+    @Transactional(readOnly = true)
+    public byte[] exportar(YearMonth mes) {
+        LocalDate inicio = mes.atDay(1);
+        LocalDate fim = mes.atEndOfMonth();
+
+        List<Lancamento> lancamentos = lancamentoRepository.findByDataBetweenOrderByDataAsc(inicio, fim);
+
+        // Separador ";" porque o Excel pt-BR usa "," como decimal.
+        // A última coluna não leva ";" no fim (senão vira uma coluna vazia extra),
+        // e "\n" encerra a linha.
+        StringBuilder sb = new StringBuilder();
+        sb.append("Data;Tipo;Descrição;Valor (R$);Origem;Categoria;Observações\n");
+
+        for (Lancamento l : lancamentos) {
+            sb.append(l.getData().format(FORMATO_DATA)).append(';')
+              .append(l.getTipo().toKebabCase()).append(';')
+              .append(escaparCsv(l.getDescricao())).append(';')
+              .append(formatarReais(l.getValorCentavos())).append(';')
+              // origem/categoria/observacoes podem ser null: vira célula vazia, não "null".
+              .append(l.getOrigem() == null ? "" : l.getOrigem().toKebabCase()).append(';')
+              .append(l.getCategoria() == null ? "" : l.getCategoria().toKebabCase()).append(';')
+              .append(escaparCsv(l.getObservacoes()))
+              .append('\n');
+        }
+
+        // "\uFEFF" (BOM) avisa o Excel que o arquivo é UTF-8; sem ele os acentos quebram.
+        return ("\uFEFF" + sb).getBytes(StandardCharsets.UTF_8);
+    }
+
+    // static final: o formatador é imutável e seguro entre threads,
+    // então criamos um só para a classe toda em vez de um por chamada.
+    private static final DateTimeFormatter FORMATO_DATA = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    // Centavos -> "1234,56". %02d completa com zero à esquerda: 5 centavos vira "05", não "5".
+    private static String formatarReais(long centavos) {
+        return String.format("%d,%02d", centavos / 100, centavos % 100);
+    }
+
+    // Texto livre pode ter ";", aspas ou quebra de linha, o que desalinharia as colunas.
+    // Regra do CSV: envolver o campo em aspas e duplicar as aspas internas (" -> "").
+    private static String escaparCsv(String texto) {
+        if (texto == null) {
+            return "";
+        }
+        if (texto.contains(";") || texto.contains("\"") || texto.contains("\n")) {
+            return "\"" + texto.replace("\"", "\"\"") + "\"";
+        }
+        return texto;
     }
 }

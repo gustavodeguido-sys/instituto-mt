@@ -14,6 +14,9 @@ export async function api<T>(caminho: string, init?: RequestInit): Promise<T> {
         throw new Error(problema?.detail ?? `Erro ${res.status} em ${caminho}`)
     }
 
-    // 204 No Content não tem corpo: chamar res.json() nele lançaria erro.
-    return (res.status === 204 ? undefined : await res.json()) as T
+    // Algumas respostas não têm corpo (204 No Content, ou 201 Created de um POST
+    // void, como o de lançamentos): res.json() nelas lançaria erro. Por isso lemos
+    // como texto e só convertemos para JSON se veio alguma coisa.
+    const texto = await res.text()
+    return (texto ? JSON.parse(texto) : undefined) as T
 }

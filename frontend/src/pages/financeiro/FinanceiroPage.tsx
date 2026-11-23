@@ -70,6 +70,8 @@ export default function FinanceiroPage() {
     setExportando(true)
     try {
       await exportarFinanceiro(mes)
+    } catch {
+      setErro('Não foi possível exportar o arquivo.')
     } finally {
       setExportando(false)
     }
